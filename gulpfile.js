@@ -6,9 +6,9 @@ var gulp = require('gulp'),
     //less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     //clean = require('gulp-clean'), //deprecated in favor of del
-    del = require('del'),
+    //del = require('del'),
     rename = require('gulp-rename'),
-    gutil = require('gulp-util'),
+    //gutil = require('gulp-util'),
     sourcemaps = require('gulp-sourcemaps');
 
 
@@ -21,15 +21,16 @@ var gulp = require('gulp'),
 //    return gulp.src('build/css/*', {read: false})
 //        .pipe(clean());
 //});
-gulp.task('cleanjs', function (cb) {
-    del('build/js/*.js', cb);
-});
-gulp.task('cleancss', function (cb) {
-    del('build/css/*.css', cb);
-});
+//gulp.task('cleanjs', function (cb) {
+//    del('build/js/*.js', cb);
+//});
+//gulp.task('cleancss', function (cb) {
+//    del('build/css/*.css', cb);
+//});
 
 //uglify
 gulp.task('compressjs', function() {
+    //del('build/js/*.js');
     gulp.src(
         'js/app.js'
     )
@@ -52,20 +53,21 @@ gulp.task('concatjs', function() {
         'js/agency.min.js',
         'build/js/app.min.js'
     ])
+    .pipe(sourcemaps.init())
     .pipe(concat('scripts.min.js'))
-    //.pipe(sourcemaps.init())
-    //.pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('prod/js'));
 });
 
 
 //javascript tasks
-gulp.task('js', ['cleanjs', 'compressjs', 'concatjs']);
+gulp.task('js', ['compressjs', 'concatjs']);
 
 
 //concatcss
 gulp.task('concatcss', function() {
-  return gulp.src([
+    //del('build/css/*.css');
+    return gulp.src([
         './css/font-awesome.min.css',
         './css/grav.css',
         './css/style.css'
@@ -76,7 +78,7 @@ gulp.task('concatcss', function() {
 });
 
 //css tasks
-gulp.task('css', ['cleancss', 'concatcss']);
+gulp.task('css', ['concatcss']);
 
 
 //watch
