@@ -204,14 +204,31 @@ function initialize() {
 */
 
 
+function browserSupportsCSSProperty(propertyName) {
+    var elm = document.createElement('div');
+    propertyName = propertyName.toLowerCase();
+    if (elm.style[propertyName] != undefined) {
+        return true;
+    }
+    var propertyNameCapital = propertyName.charAt(0).toUpperCase() + propertyName.substr(1),
+        domPrefixes = 'Webkit Moz ms O'.split(' ');
+    for (var i = 0; i < domPrefixes.length; i++) {
+        if (elm.style[domPrefixes[i] + propertyNameCapital] != undefined) {
+            return true;
+        }
+    }
+    return false;
+}//browserSupportsCSSProperty
 
-//$(function() {
-$(document).ready(function () {
+$(function() {
+//$(document).ready(function () {
 
     //lazyload
-    $("img.lazy").lazyload({
-        threshold : 200
-    });
+    //try{
+        $("img.lazy").lazyload({
+            threshold : 200
+        });
+    //} catch (ignore) {}
 
     //alternate the timeline so that I do not have to worry about it
     $('ul.timeline li').each(function (index, el) {
@@ -224,7 +241,7 @@ $(document).ready(function () {
 
     $('#map .num_countries').text(num_countries);
 
-    $('header').height();
+    //$('header').height();
 
 /*
     //resize the containers on the main to window size
@@ -287,7 +304,43 @@ $(document).ready(function () {
     });
 
 
-});
+    //animations
+/*
+    // Only animate in elements if the browser supports animations
+    if (browserSupportsCSSProperty('animation') && browserSupportsCSSProperty('transition')) {
+        var $animatedEls = $(".animated"),
+            animateOffset = 50,
+            windowHeight = 0,
+            currScrollPosition = 0;
+        windowScrollPosition = 0,
+
+        $animatedEls.addClass('pre-anim');
+
+        var windowHeight = $(window).height();
+
+        $(window).scroll(function(e) {
+
+            var currScrollPosition = $(window).scrollTop(),
+                offset = 0;
+
+            $.each($animatedEls, function(i, item) {
+
+                offset = $(item).offset().top;
+
+                console.log($(item).offset());
+
+//                if (currScrollPosition > offset + animateOffset) {
+//                    $(el).removeClass('pre-anim');
+//                    $(el).addClass( $(el).data('anim') );
+            //console.log('animated el: ' + i);
+//                }
+            });
+
+        });
+    }
+*/
+
+});//$(function(){
 
 
 
