@@ -1,18 +1,33 @@
 {
-  "name": "jonaso-new",
+  "name": "jonaso.de",
   "version": "1.0.0",
-  "description": "",
+  "description": "jonaso.de\r =====",
   "main": "gulpfile.js",
   "author": "JO",
   "license": "ISC",
   "devDependencies": {
+    "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-batch": "^1.0.5",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.5.2",
     "gulp-minify-css": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4"
-  }
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joetm/jonaso.de.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joetm/jonaso.de/issues"
+  },
+  "homepage": "https://github.com/joetm/jonaso.de#readme"
 }

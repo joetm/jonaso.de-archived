@@ -2,23 +2,31 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     watch = require('gulp-watch'),
-    batch = require('gulp-batch'),
+    //batch = require('gulp-batch'),
     //less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
-    clean = require('gulp-clean'),
-    rename = require('gulp-rename');
+    //clean = require('gulp-clean'), //deprecated in favor of del
+    del = require('del'),
+    rename = require('gulp-rename'),
+    gutil = require('gulp-util'),
+    sourcemaps = require('gulp-sourcemaps');
 
 
 //clean build directory
-gulp.task('cleanjs', function () {
-    return gulp.src('build/js/*', {read: false})
-        .pipe(clean());
+//gulp.task('cleanjs', function () {
+//    return gulp.src('build/js/*', {read: false})
+//        .pipe(clean());
+//});
+//gulp.task('cleancss', function () {
+//    return gulp.src('build/css/*', {read: false})
+//        .pipe(clean());
+//});
+gulp.task('cleanjs', function (cb) {
+    del('build/js/*.js', cb);
 });
-gulp.task('cleancss', function () {
-    return gulp.src('build/css/*', {read: false})
-        .pipe(clean());
+gulp.task('cleancss', function (cb) {
+    del('build/css/*.css', cb);
 });
-
 
 //uglify
 gulp.task('compressjs', function() {
@@ -45,6 +53,8 @@ gulp.task('concatjs', function() {
         'build/js/app.min.js'
     ])
     .pipe(concat('scripts.min.js'))
+    //.pipe(sourcemaps.init())
+    //.pipe(sourcemaps.write())
     .pipe(gulp.dest('prod/js'));
 });
 
@@ -52,16 +62,6 @@ gulp.task('concatjs', function() {
 //javascript tasks
 gulp.task('js', ['cleanjs', 'compressjs', 'concatjs']);
 
-
-/*
-//minifycss
-gulp.task('minifycss', function() {
-    gulp.src('css/*.css')
-    //.pipe(less())
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('build/css'));
-});
-*/
 
 //concatcss
 gulp.task('concatcss', function() {
