@@ -1,3 +1,8 @@
+#private files
+token.php
+contact.php
+node_modules/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
