@@ -1,6 +1,16 @@
 body{
 	overflow-x:hidden;
 }
+#tagcloud .w1{color:#AAAAAA;}
+#tagcloud .w2{color:#666666;}
+#tagcloud .w3{color:#999999;}
+#tagcloud .w4{color:#666670;}
+#tagcloud .w5{color:#777770;}
+#tagcloud .w6{color:#888890;}
+#tagcloud .w7{color:#999990;}
+#tagcloud .w8{color:#AAAA90;}
+#tagcloud .w9{color:#BBBBA0;}
+#tagcloud .w10{color:#DDDD00;}
 #loc-map{
 	padding:0px;
 	margin:0px;

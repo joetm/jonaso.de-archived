@@ -51,6 +51,7 @@ gulp.task('concatjs', function() {
         'js/classie.min.js',
         'js/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
+        'js/jqcloud.min.js',
         'build/js/app.min.js'
     ])
     .pipe(sourcemaps.init())
@@ -70,6 +71,7 @@ gulp.task('concatcss', function() {
     return gulp.src([
         './css/font-awesome.min.css',
         './css/grav.css',
+        './css/jqcloud.min.css',
         './css/style.css'
     ])
     .pipe(concat('styles.min.css'))
