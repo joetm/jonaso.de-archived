@@ -304,8 +304,8 @@ $(function() {
     });
 
 
-    //animations
 /*
+    //animations
     // Only animate in elements if the browser supports animations
     if (browserSupportsCSSProperty('animation') && browserSupportsCSSProperty('transition')) {
         var $animatedEls = $(".animated"),
@@ -314,31 +314,36 @@ $(function() {
             currScrollPosition = 0;
         windowScrollPosition = 0,
 
-        $animatedEls.addClass('pre-anim');
+        //$animatedEls.addClass('pre-anim');
 
-        var windowHeight = $(window).height();
+        windowHeight = $(window).height();
 
         $(window).scroll(function(e) {
 
             var currScrollPosition = $(window).scrollTop(),
                 offset = 0;
 
-            $.each($animatedEls, function(i, item) {
+			$.each($(".animated"), function(i, el){
 
-                offset = $(item).offset().top;
+				offset = $(el).offset().top;
 
-                console.log($(item).offset());
+				//console.log('offset: ' + i + " - " + offset);
 
-//                if (currScrollPosition > offset + animateOffset) {
-//                    $(el).removeClass('pre-anim');
-//                    $(el).addClass( $(el).data('anim') );
-            //console.log('animated el: ' + i);
-//                }
-            });
+                if (currScrollPosition > offset + animateOffset) {
+                    $(el).removeClass('pre-anim');
+                    $(el).addClass( $(el).data('anim') );
+          			console.log('animated el: ' + i);
+                }
+                else
+                {
+					$(el).addClass('pre-anim');
+				}
+			});
 
         });
     }
 */
+
 
 });//$(function(){
 
