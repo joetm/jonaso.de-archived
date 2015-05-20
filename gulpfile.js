@@ -48,7 +48,7 @@ gulp.task('concatjs', function() {
         'js/jquery.lazyload.min.js',
         'js/bootstrap.min.js',
         'js/jquery.easing.min.js',
-        'js/classie.min.js',
+//        'js/classie.min.js',
         'js/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
         'js/jqcloud.min.js',
