@@ -38,7 +38,7 @@ gulp.task('compressjs', function() {
     .pipe(rename({
         extname: '.min.js'
     }))
-    .pipe(gulp.dest('build/js'));
+    .pipe(gulp.dest('js'));
 });
 
 //concatjs
@@ -48,21 +48,20 @@ gulp.task('concatjs', function() {
         'js/jquery.lazyload.min.js',
         'js/bootstrap.min.js',
         'js/jquery.easing.min.js',
-//        'js/classie.min.js',
         'js/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
         'js/jqcloud.min.js',
-        'build/js/app.min.js'
+        'js/app.js'
     ])
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     .pipe(concat('scripts.min.js'))
-    .pipe(sourcemaps.write('./'))
+    //.pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('prod/js'));
 });
 
 
 //javascript tasks
-gulp.task('js', ['compressjs', 'concatjs']);
+gulp.task('js', ['concatjs']); //compressjs
 
 
 //concatcss

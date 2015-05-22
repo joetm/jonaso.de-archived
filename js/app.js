@@ -223,6 +223,8 @@ function browserSupportsCSSProperty(propertyName) {
 $(function() {
 //$(document).ready(function () {
 
+	$('#komasurfer-link').attr('href', 'http://koma' + 'surfer.com/' + 'portfolio/');
+
     //lazyload
     //try{
         $("img.lazy").lazyload({
