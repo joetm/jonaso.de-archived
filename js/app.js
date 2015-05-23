@@ -1,3 +1,5 @@
+/*global places, console, document*/
+
 var countries = [],
     i = 0,
     num_places = places.length;
@@ -205,14 +207,20 @@ function initialize() {
 
 
 function browserSupportsCSSProperty(propertyName) {
-    var elm = document.createElement('div');
+    'use strict';
+
+    var elm = document.createElement('div'),
+        i,
+        propertyNameCapital,
+        domPrefixes;
+
     propertyName = propertyName.toLowerCase();
-    if (elm.style[propertyName] != undefined) {
+    if (elm.style[propertyName] !== undefined) {
         return true;
     }
-    var propertyNameCapital = propertyName.charAt(0).toUpperCase() + propertyName.substr(1),
-        domPrefixes = 'Webkit Moz ms O'.split(' ');
-    for (var i = 0; i < domPrefixes.length; i++) {
+    propertyNameCapital = propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
+    domPrefixes = 'Webkit Moz ms O'.split(' ');
+    for (i = 0; i < domPrefixes.length; i++) {
         if (elm.style[domPrefixes[i] + propertyNameCapital] != undefined) {
             return true;
         }
@@ -351,7 +359,6 @@ $(function() {
         });
     }
 */
-
 
 });//$(function(){
 

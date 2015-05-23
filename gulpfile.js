@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     //del = require('del'),
     rename = require('gulp-rename'),
     //gutil = require('gulp-util'),
+    jslint = require('gulp-jslint'),
     sourcemaps = require('gulp-sourcemaps');
 
 
@@ -27,6 +28,17 @@ var gulp = require('gulp'),
 //gulp.task('cleancss', function (cb) {
 //    del('build/css/*.css', cb);
 //});
+
+//check js
+gulp.task('jslint', function () {
+    return gulp.src(['js/app.js'])
+	.pipe(jslint({
+		errorsOnly: false
+	}))
+	.on('error', function (error) {
+		console.error(String(error));
+	});
+});
 
 //uglify
 gulp.task('compressjs', function() {
@@ -51,7 +63,8 @@ gulp.task('concatjs', function() {
         'js/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
         'js/jqcloud.min.js',
-        'js/app.js'
+        'js/wow.min.js',
+        'js/app.min.js'
     ])
     //.pipe(sourcemaps.init())
     .pipe(concat('scripts.min.js'))
@@ -61,7 +74,7 @@ gulp.task('concatjs', function() {
 
 
 //javascript tasks
-gulp.task('js', ['concatjs']); //compressjs
+gulp.task('js', ['compressjs', 'concatjs']); //jslint
 
 
 //concatcss
