@@ -232,11 +232,17 @@ $(function() {
         });
     //} catch (ignore) {}
 
-    //alternate the timeline so that I do not have to worry about it
+    //alternate the mini-cv timeline so that I do not have to worry about it
+	//and add animation
     $('ul.timeline li').each(function (index, el) {
         if (index % 2 !== 0) {
             $(el).addClass('timeline-inverted');
+            $(el).find('.timeline-body').addClass('slideInRight');
         }
+        else
+        {
+            $(el).find('.timeline-body').addClass('slideInLeft');
+		}
     });
 
     $('footer .copyright').append(' ' + new Date().getFullYear());
