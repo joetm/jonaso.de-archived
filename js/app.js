@@ -231,7 +231,7 @@ function browserSupportsCSSProperty(propertyName) {
 $(function() {
 //$(document).ready(function () {
 
-	$('#komasurfer-link').attr('href', 'http://koma' + 'surfer.com/' + 'portfolio/');
+    $('#komasurfer-link').attr('href', 'http://koma' + 'surfer.com/' + 'portfolio/');
 
     //lazyload
     //try{
@@ -241,7 +241,7 @@ $(function() {
     //} catch (ignore) {}
 
     //alternate the mini-cv timeline so that I do not have to worry about it
-	//and add animation
+    //and add animation
     $('ul.timeline li').each(function (index, el) {
         if (index % 2 !== 0) {
             $(el).addClass('timeline-inverted');
@@ -250,7 +250,7 @@ $(function() {
         else
         {
             $(el).find('.timeline-body').addClass('slideInLeft');
-		}
+        }
     });
 
     $('footer .copyright').append(' ' + new Date().getFullYear());
@@ -339,26 +339,68 @@ $(function() {
             var currScrollPosition = $(window).scrollTop(),
                 offset = 0;
 
-			$.each($(".animated"), function(i, el){
+            $.each($(".animated"), function(i, el){
 
-				offset = $(el).offset().top;
+                offset = $(el).offset().top;
 
-				//console.log('offset: ' + i + " - " + offset);
+                //console.log('offset: ' + i + " - " + offset);
 
                 if (currScrollPosition > offset + animateOffset) {
                     $(el).removeClass('pre-anim');
                     $(el).addClass( $(el).data('anim') );
-          			console.log('animated el: ' + i);
+                    console.log('animated el: ' + i);
                 }
                 else
                 {
-					$(el).addClass('pre-anim');
-				}
-			});
+                    $(el).addClass('pre-anim');
+                }
+            });
 
         });
     }
 */
+
+    //animations
+    new WOW().init();
+
+
+      $('#slider').slick({
+        accessibility: true,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        ]
+      });
+
 
 });//$(function(){
 
