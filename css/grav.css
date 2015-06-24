@@ -5817,7 +5817,8 @@ section h3 {
   margin-top: 0; }
 
 aside.clients img {
-  margin: 50px auto; }
+  margin: 50px auto 30px auto;
+}
 
 section#contact {
   background-color: #222;
