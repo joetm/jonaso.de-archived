@@ -64,7 +64,7 @@ gulp.task('concatjs', function() {
         'js/agency.min.js',
         'js/jqcloud.min.js',
         'js/wow.min.js',
-        'js/slick.min.js',
+        //'js/slick.min.js',
         'js/app.min.js'
     ])
     //.pipe(sourcemaps.init())
@@ -85,8 +85,8 @@ gulp.task('concatcss', function() {
         './css/font-awesome.min.css',
         './css/grav.css',
         './css/jqcloud.min.css',
-        './css/slick.css',
-        './css/slick-theme.css',
+        //'./css/slick.css',
+        //'./css/slick-theme.css',
         './css/style.css'
     ])
     .pipe(concat('styles.min.css'))
