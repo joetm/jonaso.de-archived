@@ -57,6 +57,8 @@ gulp.task('compressjs', function() {
 gulp.task('concatjs', function() {
     return gulp.src([
         'js/vendor/jquery-2.1.3.min.js', //requireJS requires this to be separate
+        'js/vendor/underscore-min.js',
+        'js/vendor/backbone-min.js',
         'js/vendor/jquery.lazyload.min.js',
         'js/vendor/bootstrap.min.js',
         'js/vendor/cbpAnimatedHeader.min.js',

@@ -1,12 +1,22 @@
-/*global $, console, document*/
+/*global $, console, document, Backbone, _*/
 
-var places,
+var app = {},
+    places,
     words;
     countries = [],
     i = 0,
     num_places = 0,
     num_countries = 0,
     map;
+
+
+app.finished = false;
+$(app).on('ajax:done', function () {
+    console.log('custom ajax:done event');
+    app.finished = true;
+    //only set up animations after app is fully loaded
+    new WOW().init();
+});//$(app).on('ajax:done'
 
 
 function contains(a, obj) {
@@ -83,6 +93,90 @@ $.ajax({
 
 
 
+
+var MCVModel = Backbone.Model.extend({
+    urlRoot: './data/mini-cv.json'
+});
+var MCVCollection = Backbone.Collection.extend({
+    idAttribute: '_id',
+    url: './data/mini-cv.json',
+    model: MCVModel
+});
+var miniCVstations = new MCVCollection();
+//mini cv views
+var MCVView = Backbone.View.extend({
+    collection: miniCVstations,
+    el: $('#cv .timeline'),
+    tagName: "li",
+    //className: "document-row",
+    initialize: function () {
+        //console.log('initializing view');
+        this.loadTemplate();
+        //console.log('collection', this.collection);
+        //this.listenTo(this.collection, "change", this.render);
+    },
+    template: false,
+    loadTemplate: function () {
+        var self = this;
+        $.get('./views/minicv.htm', function(template) {
+            Mustache.parse(template); // supposed to speed up future uses
+            self.template = template;
+            self.render();
+        });
+    },
+    itemNo: 0,
+    renderTemplate: function (item) {
+        //console.log(item.toJSON());
+        this.itemNo++;
+        item = item.toJSON();
+        if (this.itemNo % 2 !== 0) {
+            item.li_class = ' timeline-inverted';
+            item.timeline_body_alternation = 'slideInRight';
+        } else {
+            item.li_class = '';
+            item.timeline_body_alternation = 'slideInLeft';
+        }
+        //console.log(item);
+        return Mustache.render(this.template, item);
+    },
+    htmlContent: '',
+    render: function () {
+        //console.log('rendering backbone minicv view');
+        var self = this;
+        //see http://stackoverflow.com/a/15576804/426266
+        this.collection.fetch().done(function () {
+            //console.log('collection', self.collection);
+            self.collection.each(function(item){
+                //console.log('item', item);
+                self.htmlContent += self.renderTemplate(item);
+            });
+            self.$el.prepend(self.htmlContent);
+            //var renderedContent = self.template(self.collection.toJSON());
+            //self.$el.html(renderedContent);
+        });//this.collection.fetch
+
+        //set up the animations
+        //alternate the mini-cv timeline so that I do not have to worry about it
+        //and add animation
+        /*
+        $('ul.timeline li').each(function (index, el) {
+            if (index % 2 !== 0) {
+                $(el).addClass('timeline-inverted');
+                $(el).find('.timeline-body').addClass('slideInRight');
+            }
+            else
+            {
+                $(el).find('.timeline-body').addClass('slideInLeft');
+            }
+        });
+        */
+
+        $(app).trigger('ajax:done');
+    }
+});//MiniCVView
+var miniCVview = new MCVView();
+//miniCVstations.fetch();
+//console.log('miniCVstations', miniCVstations);
 
 /*
 var TILE_SIZE = 256;
@@ -276,33 +370,21 @@ $(function() { //$(document).ready(function () {
         });
     //} catch (ignore) {}
 
-    //alternate the mini-cv timeline so that I do not have to worry about it
-    //and add animation
-    $('ul.timeline li').each(function (index, el) {
-        if (index % 2 !== 0) {
-            $(el).addClass('timeline-inverted');
-            $(el).find('.timeline-body').addClass('slideInRight');
-        }
-        else
-        {
-            $(el).find('.timeline-body').addClass('slideInLeft');
-        }
-    });
-
+    //copyright date
     $('footer .copyright').append(' ' + new Date().getFullYear());
 
+
+    //number of countries visited
     $('#map .num_countries').text(num_countries);
 
-    //$('header').height();
-
-/*
+    /*
     //resize the containers on the main to window size
     function resize_pages(){
         $('header').height($(window).height());
     };
     resize_pages();
     $(window).resize(resize_pages);
-*/
+    */
 
     //preview
     //$('section').remove();
@@ -397,8 +479,6 @@ $(function() { //$(document).ready(function () {
     }
 */
 
-    //animations
-    new WOW().init();
 
 
     /*
