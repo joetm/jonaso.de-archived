@@ -56,15 +56,15 @@ gulp.task('compressjs', function() {
 //concatjs
 gulp.task('concatjs', function() {
     return gulp.src([
-        'js/jquery-2.1.3.min.js',
-        'js/jquery.lazyload.min.js',
-        'js/bootstrap.min.js',
-        'js/jquery.easing.min.js',
-        'js/cbpAnimatedHeader.min.js',
+        'js/vendor/jquery-2.1.3.min.js',
+        'js/vendor/jquery.lazyload.min.js',
+        'js/vendor/bootstrap.min.js',
+        'js/vendor/jquery.easing.min.js',
+        'js/vendor/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
-        'js/jqcloud.min.js',
-        'js/wow.min.js',
-        //'js/slick.min.js',
+        'js/vendor/jqcloud.min.js',
+        'js/vendor/wow.min.js',
+        //'js/vendor/slick.min.js',
         'js/app.min.js'
     ])
     //.pipe(sourcemaps.init())
