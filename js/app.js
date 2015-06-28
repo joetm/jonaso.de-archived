@@ -364,6 +364,7 @@ $(function() {
     new WOW().init();
 
 
+    /*
       $('#slider').slick({
         accessibility: true,
         infinite: true,
@@ -400,7 +401,7 @@ $(function() {
         // settings: "unslick"
         ]
       });
-
+    */
 
 });//$(function(){
 
