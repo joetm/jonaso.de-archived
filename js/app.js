@@ -1,8 +1,13 @@
-/*global places, console, document*/
+/*global $, console, document*/
 
-var countries = [],
+var places,
+    words;
+    countries = [],
     i = 0,
-    num_places = places.length;
+    num_places = 0,
+    num_countries = 0,
+    map;
+
 
 function contains(a, obj) {
     'use strict';
@@ -16,17 +21,69 @@ function contains(a, obj) {
     return false;
 }
 
-for (i = 0; i < num_places; i = i + 1) {
-    if (!contains(countries, places[i].country)) {
-        countries.push(places[i].country);
+function browserSupportsCSSProperty(propertyName) {
+    'use strict';
+
+    var elm = document.createElement('div'),
+        i,
+        propertyNameCapital,
+        domPrefixes;
+
+    propertyName = propertyName.toLowerCase();
+    if (elm.style[propertyName] !== undefined) {
+        return true;
     }
-}
-//console.log(countries);
-var num_countries = countries.length;
-//console.log(num_countries);
+    propertyNameCapital = propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
+    domPrefixes = 'Webkit Moz ms O'.split(' ');
+    for (i = 0; i < domPrefixes.length; i++) {
+        if (elm.style[domPrefixes[i] + propertyNameCapital] != undefined) {
+            return true;
+        }
+    }
+    return false;
+}//browserSupportsCSSProperty
 
 
-var map;
+
+//load the data
+$.ajax({
+    url: "data/data.json",
+    dataType: "json",
+    cache: false
+})
+    .done(function(data) {
+
+        places = data.places;
+        words = data.words;
+        num_places = places.length;
+
+        for (i = 0; i < num_places; i = i + 1) {
+            if (!contains(countries, places[i].country)) {
+                countries.push(places[i].country);
+            }//if
+        }//for
+        //console.log(countries);
+        num_countries = countries.length;
+        //console.log(num_countries);
+
+        //tag cloud
+        $('#tagcloud').jQCloud(words, {
+            removeOverflowing:false,
+            autoResize:true
+        });
+
+    })//done
+    .fail(function(xhr, err) {
+        if (err === 'parsererror') {
+            console.log('malformed json in data.json');
+        } else {
+            console.log('ajax failed', err);
+        }
+    });//fail
+
+
+
+
 /*
 var TILE_SIZE = 256;
 //var loc = new google.maps.LatLng(50.897728,-1.408561);
@@ -206,30 +263,9 @@ function initialize() {
 */
 
 
-function browserSupportsCSSProperty(propertyName) {
-    'use strict';
 
-    var elm = document.createElement('div'),
-        i,
-        propertyNameCapital,
-        domPrefixes;
 
-    propertyName = propertyName.toLowerCase();
-    if (elm.style[propertyName] !== undefined) {
-        return true;
-    }
-    propertyNameCapital = propertyName.charAt(0).toUpperCase() + propertyName.substr(1);
-    domPrefixes = 'Webkit Moz ms O'.split(' ');
-    for (i = 0; i < domPrefixes.length; i++) {
-        if (elm.style[domPrefixes[i] + propertyNameCapital] != undefined) {
-            return true;
-        }
-    }
-    return false;
-}//browserSupportsCSSProperty
-
-$(function() {
-//$(document).ready(function () {
+$(function() { //$(document).ready(function () {
 
     $('#komasurfer-link').attr('href', 'http://koma' + 'surfer.com/' + 'portfolio/');
 
@@ -288,6 +324,7 @@ $(function() {
         }
         //alert(msg);
     });
+
 
     $('#simple_form-field-submit').click(function(e) {
         e.preventDefault();
@@ -403,11 +440,6 @@ $(function() {
       });
     */
 
-    //tag cloud
-    $('#tagcloud').jQCloud(words, {
-        removeOverflowing:false,
-        autoResize:true
-    });
 
 });//$(function(){
 

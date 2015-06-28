@@ -59,10 +59,11 @@ gulp.task('concatjs', function() {
         'js/vendor/jquery-2.1.3.min.js', //requireJS requires this to be separate
         'js/vendor/jquery.lazyload.min.js',
         'js/vendor/bootstrap.min.js',
-        'js/vendor/jquery.easing.min.js',
         'js/vendor/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
+        'js/vendor/mustache/mustache.min.js',
         'js/vendor/jqcloud.min.js',
+        'js/vendor/jquery.easing.min.js',
         'js/vendor/wow.min.js',
         //'js/vendor/slick.min.js',
         'js/app.min.js'
