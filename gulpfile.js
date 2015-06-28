@@ -87,7 +87,8 @@ gulp.task('concatcss', function() {
         './css/jqcloud.min.css',
         //'./css/slick.css',
         //'./css/slick-theme.css',
-        './css/style.css'
+        './css/style.css',
+        './css/animate.css'
     ])
     .pipe(concat('styles.min.css'))
     .pipe(minifyCSS())
