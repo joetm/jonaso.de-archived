@@ -56,7 +56,7 @@ gulp.task('compressjs', function() {
 //concatjs
 gulp.task('concatjs', function() {
     return gulp.src([
-        'js/vendor/jquery-2.1.3.min.js',
+        'js/vendor/jquery-2.1.3.min.js', //requireJS requires this to be separate
         'js/vendor/jquery.lazyload.min.js',
         'js/vendor/bootstrap.min.js',
         'js/vendor/jquery.easing.min.js',

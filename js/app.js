@@ -403,6 +403,12 @@ $(function() {
       });
     */
 
+    //tag cloud
+    $('#tagcloud').jQCloud(words, {
+        removeOverflowing:false,
+        autoResize:true
+    });
+
 });//$(function(){
 
 
