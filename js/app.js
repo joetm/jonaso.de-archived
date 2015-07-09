@@ -94,17 +94,17 @@ $.ajax({
 
 
 
-var MCVModel = Backbone.Model.extend({
+var MiniCVModel = Backbone.Model.extend({
     urlRoot: './data/mini-cv.json'
 });
-var MCVCollection = Backbone.Collection.extend({
+var MiniCVCollection = Backbone.Collection.extend({
     idAttribute: '_id',
     url: './data/mini-cv.json',
-    model: MCVModel
+    model: MiniCVModel
 });
-var miniCVstations = new MCVCollection();
+var miniCVstations = new MiniCVCollection();
 //mini cv views
-var MCVView = Backbone.View.extend({
+var MiniCVView = Backbone.View.extend({
     collection: miniCVstations,
     el: $('#cv .timeline'),
     tagName: "li",
@@ -174,7 +174,7 @@ var MCVView = Backbone.View.extend({
         $(app).trigger('ajax:done');
     }
 });//MiniCVView
-var miniCVview = new MCVView();
+var miniCVview = new MiniCVView();
 //miniCVstations.fetch();
 //console.log('miniCVstations', miniCVstations);
 
@@ -406,8 +406,7 @@ $(function() { //$(document).ready(function () {
         }
         //alert(msg);
     });
-
-
+    /*form submission*/
     $('#simple_form-field-submit').click(function(e) {
         e.preventDefault();
 
@@ -416,7 +415,7 @@ $(function() { //$(document).ready(function () {
                 dataType: 'text',
                 url: "http://komasurfer.com/contact.php",
                 data: {
-                    'token': securitytoken,
+                    'token': securitytoken,//need that token
                     'name': $("#simple_form-field-name").val(),
                     'email': $("#simple_form-field-email").val(),
                     'message': $("#simple_form-field-message").val(),
@@ -436,7 +435,8 @@ $(function() { //$(document).ready(function () {
         }
 
         return false;
-    });
+
+    });//$('#simple_form-field-submit').click
 
 
 /*
@@ -478,48 +478,6 @@ $(function() { //$(document).ready(function () {
         });
     }
 */
-
-
-
-    /*
-      $('#slider').slick({
-        accessibility: true,
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        autoplay: true,
-        autoplaySpeed: 2500,
-        responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        ]
-      });
-    */
-
 
 });//$(function(){
 
