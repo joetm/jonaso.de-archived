@@ -15,17 +15,32 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'prod/js/*.js', watched: true, served: true, included: true},
+        //{pattern: 'prod/js/*.js', watched: true, served: true, included: true},
+        {pattern: 'js/vendor/jquery-2.1.3.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/underscore-min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/backbone-min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/jquery.lazyload.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/bootstrap.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/cbpAnimatedHeader.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/agency.min.js', watched: true, served: true, included: true},
+        {pattern: 'js/vendor/mustache/mustache.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/jqcloud.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/jquery.easing.min.js', watched: false, served: true, included: true},
+        {pattern: 'js/vendor/wow.min.js', watched: false, served: true, included: true},
         {pattern: 'prod/css/*.css', watched: true, served: true, included: true},
         {pattern: 'data/**/*.json', watched: true, served: true, included: false},
+        {pattern: 'views/**/*.htm', watched: true, served: true, included: false},
         {pattern: 'fonts/*.*', watched:false, served: true, included: false},
         {pattern: 'icons/*.*', watched:false, served: true, included: false},
+        //{pattern: 'token.php', watched: true, served: true, included: true},
+        {pattern: 'js/agency.js', watched: true, served: true, included: true},
+        {pattern: 'js/app.js', watched: true, served: true, included: true},
         'test/**/*Spec.js'
     ],
     // list of files to exclude
     exclude: [
-      'js/**/test/*.js',
-      'js/**/node_modules/*.js'
+      'js/vendor/**/test/*.js',
+      'js/vendor/**/node_modules/*.js'
     ],
 
     /*
@@ -36,7 +51,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'prod/js/*.js': 'coverage',
+        'js/**/*.js': 'coverage',
     },
 
     // test results reporter to use

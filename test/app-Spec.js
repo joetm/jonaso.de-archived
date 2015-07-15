@@ -84,11 +84,17 @@ describe('app', function() {
     });
 
 
-/*
     it('sets portfolio link', function() {
-        expect($('#komasurfer-link').attr('href')).toEqual('http://koma' + 'surfer.com/' + 'portfolio/');
+        $(function() {
+            expect($('#komasurfer-link').attr('href')).toEqual('http://koma' + 'surfer.com/' + 'portfolio/');
+        });
     });
-*/
+
+    it('defines securitytoken as false', function() {
+        $(function() {
+            expect(securitytoken).toBe(false);
+        });
+    });
 
 
 });//describe
