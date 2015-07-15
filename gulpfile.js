@@ -9,8 +9,8 @@ var gulp = require('gulp'),
     //del = require('del'),
     rename = require('gulp-rename'),
     //gutil = require('gulp-util'),
-    jslint = require('gulp-jslint'),
-    sourcemaps = require('gulp-sourcemaps');
+    jslint = require('gulp-jslint');
+    //sourcemaps = require('gulp-sourcemaps');
 
 
 //clean build directory

@@ -2,12 +2,12 @@
 
 var app = {},
     places,
-    words;
+    words,
     countries = [],
     i = 0,
     num_places = 0,
     num_countries = 0,
-    map;
+    map = {};
 
 
 app.finished = false;
