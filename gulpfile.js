@@ -73,7 +73,6 @@ gulp.task('concatjs', function() {
         'js/vendor/jqcloud.min.js',
         'js/vendor/jquery.easing.min.js',
         'js/vendor/wow.min.js',
-        //'js/vendor/slick.min.js',
         'js/app.min.js'
     ])
     //.pipe(sourcemaps.init())

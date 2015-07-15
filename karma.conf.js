@@ -9,13 +9,15 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: [
+        'jasmine'
+    ],
 
     // list of files / patterns to load in the browser
     files: [
-        {pattern: 'prod/js/*.js', watched:true, served: true, included: true},
-        {pattern: 'prod/css/*.css', watched:true, served: true, included: true},
-        {pattern: 'data/**/*.json', watched:true, served: true, included: false},
+        {pattern: 'prod/js/*.js', watched: true, served: true, included: true},
+        {pattern: 'prod/css/*.css', watched: true, served: true, included: true},
+        {pattern: 'data/**/*.json', watched: true, served: true, included: false},
         {pattern: 'fonts/*.*', watched:false, served: true, included: false},
         {pattern: 'icons/*.*', watched:false, served: true, included: false},
         'test/**/*Spec.js'
@@ -26,13 +28,16 @@ module.exports = function(config) {
       'js/**/node_modules/*.js'
     ],
 
+    /*
+    plugins: [
+    ],
+    */
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'prod/js/*.js': ['coverage'],
+        'prod/js/*.js': 'coverage',
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
