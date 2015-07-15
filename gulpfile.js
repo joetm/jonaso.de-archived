@@ -9,8 +9,9 @@ var gulp = require('gulp'),
     //del = require('del'),
     rename = require('gulp-rename'),
     //gutil = require('gulp-util'),
-    jslint = require('gulp-jslint');
+    jslint = require('gulp-jslint'),
     //sourcemaps = require('gulp-sourcemaps');
+    coveralls = require('gulp-coveralls');
 
 
 //clean build directory
@@ -38,6 +39,12 @@ gulp.task('jslint', function () {
     .on('error', function (error) {
         console.error(String(error));
     });
+});
+
+//coverage
+gulp.task('coveralls', function() {
+    gulp.src('test/coverage/**/lcov.info')
+      .pipe(coveralls());
 });
 
 //uglify

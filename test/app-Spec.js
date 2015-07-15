@@ -6,10 +6,9 @@ describe('app', function() {
         expect(app).toBeDefined();
     });
 
-    /*
-    it('defines places array', function() {
-        expect(places).toBeDefined();
+    it('defines countries array', function() {
+        expect(countries).toBeDefined();
     });
-    */
+
 
 });//describe

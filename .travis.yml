@@ -1,0 +1,13 @@
+language: php
+php:
+  - 5.4
+#  - 5.5
+#  - 5.6
+#  - hhvm
+#  - nightly
+#bundler_args: --retry 2
+#sudo: false
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+#install: travis_wait npm install

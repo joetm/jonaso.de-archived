@@ -3,6 +3,8 @@ token.php
 contact.php
 node_modules/
 
+.coveralls.yml
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
