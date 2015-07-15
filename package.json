@@ -22,11 +22,11 @@
     "karma": "^0.12.37",
     "karma-coverage": "^0.4.2"
   },
-  "dependencies": {},
   "scripts": {
     "test": "karma start --single-run",
     "karma": "karma start"
   },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joetm/jonaso.de.git"

@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     //less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     //clean = require('gulp-clean'), //deprecated in favor of del
-    //del = require('del'),
     rename = require('gulp-rename'),
     //gutil = require('gulp-util'),
     jslint = require('gulp-jslint'),
