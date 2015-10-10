@@ -61,5 +61,12 @@
         "title": "MSc Computer Science",
         "description": "Courses include web development, web architecture, semantic web technologies, software and project management, and open data entrepreneurship. I am going to finish my degree in September with first class results.",
         "img": "./res/3.jpg"
+    },
+    {
+        "_id": "10",
+        "dates": "2015 - today",
+        "title": "Developer / Data Scientist",
+        "description": "Seme4 Ltd.",
+        "img": "./img/laptop.jpg"
     }
 ]
