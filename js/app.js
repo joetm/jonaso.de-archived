@@ -55,43 +55,45 @@ function browserSupportsCSSProperty(propertyName) {
 
 
 
-//load the data
-$.ajax({
-    url: "data/data.json",
-    dataType: "json",
-    cache: false
-})
-    .done(function(data) {
+$(function (){
 
-        places = data.places;
-        words = data.words;
-        num_places = places.length;
+    //load the data
+    $.ajax({
+        url: "data/data.json",
+        dataType: "json",
+        cache: false
+    })
+        .done(function(data) {
 
-        for (i = 0; i < num_places; i = i + 1) {
-            if (!contains(countries, places[i].country)) {
-                countries.push(places[i].country);
-            }//if
-        }//for
-        //console.log(countries);
-        num_countries = countries.length;
-        //console.log(num_countries);
+            places = data.places;
+            words = data.words;
+            num_places = places.length;
 
-        //tag cloud
-        $('#tagcloud').jQCloud(words, {
-            removeOverflowing:false,
-            autoResize:true
-        });
+            for (i = 0; i < num_places; i = i + 1) {
+                if (!contains(countries, places[i].country)) {
+                    countries.push(places[i].country);
+                }//if
+            }//for
+            //console.log(countries);
+            num_countries = countries.length;
+            //console.log(num_countries);
 
-    })//done
-    .fail(function(xhr, err) {
-        if (err === 'parsererror') {
-            console.log('malformed json in data.json');
-        } else {
-            console.log('ajax failed', err);
-        }
-    });//fail
+            //tag cloud
+            $('#tagcloud').jQCloud(words, {
+                removeOverflowing:false,
+                autoResize:true
+            });
 
+        })//done
+        .fail(function(xhr, err) {
+            if (err === 'parsererror') {
+                console.log('malformed json in data.json');
+            } else {
+                console.log('ajax failed', err);
+            }
+        });//fail
 
+});
 
 
 var MiniCVModel = Backbone.Model.extend({
