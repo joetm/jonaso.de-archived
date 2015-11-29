@@ -128,7 +128,6 @@ var MiniCVView = Backbone.View.extend({
     },
     itemNo: 0,
     renderTemplate: function (item) {
-        //console.log(item.toJSON());
         this.itemNo++;
         item = item.toJSON();
         if (this.itemNo % 2 !== 0) {
@@ -138,18 +137,14 @@ var MiniCVView = Backbone.View.extend({
             item.li_class = '';
             item.timeline_body_alternation = 'slideInLeft';
         }
-        //console.log(item);
         return Mustache.render(this.template, item);
     },
     htmlContent: '',
     render: function () {
-        //console.log('rendering backbone minicv view');
         var self = this;
         //see http://stackoverflow.com/a/15576804/426266
         this.collection.fetch().done(function () {
-            //console.log('collection', self.collection);
             self.collection.each(function(item){
-                //console.log('item', item);
                 self.htmlContent += self.renderTemplate(item);
             });
             self.$el.prepend(self.htmlContent);
