@@ -3,6 +3,10 @@ token.php
 contact.php
 node_modules/
 
+img/
+data/mini-cv.json
+npm-debug.log
+
 .coveralls.yml
 
 # Windows image file caches

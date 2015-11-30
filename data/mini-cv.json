@@ -22,7 +22,7 @@
     },
     {
         "_id": "4",
-        "dates": "2009 - 2011",
+        "dates": "2006 - 2011",
         "title": "Freelance Web Developer",
         "description": "I took two years off to improve my programming skills and to work on my own projects.",
         "img": "./img/stairs.jpg"
@@ -59,7 +59,7 @@
         "_id": "9",
         "dates": "2014 - 2015",
         "title": "MSc Computer Science",
-        "description": "Courses include web development, web architecture, semantic web technologies, software and project management, and open data entrepreneurship. I am going to finish my degree in September with first class results.",
+        "description": "Courses included web development, web architecture, semantic web technologies, software and project management, and open data innovation. Finished my MSc thesis (\"<a href='http://crowdui.com/' target='_blank'>CrowdUI</a> - a tool to remotely source and evaluate user interface adaptations\") with excellent results.",
         "img": "./res/3.jpg"
     },
     {
@@ -67,7 +67,7 @@
         "dates": "2015 - today",
         "title": "Developer / Data Scientist",
         "description": "Seme4 Ltd.",
-        "description": "Responsible for the development of the backend infrastructure for the Linked Data SkillsPlanner project.",
+        "description": "Responsible for the development of the backend infrastructure for the Linked Data SkillsPlanner project. <a href='http://www.skillsplanner.net/' target='blank'>SkillsPlanner</a> is a complex and ambitious project with the aim of alleviating the skills shortage in London's construction industry.",
         "img": "./img/laptop.jpg"
     }
 ]
