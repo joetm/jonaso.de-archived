@@ -53,7 +53,7 @@
         {"text": "Product Development", "weight": 7},
         {"text": "Project Mgt.", "weight": 4},
         {"text": "Protractor", "weight": 1},
-        {"text": "Python", "weight": 5},
+        {"text": "Python", "weight": 6},
         {"text": "Quality Mgt.", "weight": 5},
         {"text": "R", "weight": 1},
         {"text": "RDF(S)", "weight": 4},
