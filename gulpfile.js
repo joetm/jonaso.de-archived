@@ -75,6 +75,7 @@ gulp.task('concatjs', function() {
         'js/vendor/mustache/mustache.min.js',
         'js/vendor/jquery.easing.min.js',
         'js/vendor/wow.min.js',
+        'js/vendor/leaflet/leaflet.js',
         'js/app.min.js'
     ])
     //.pipe(sourcemaps.init())
@@ -97,6 +98,7 @@ gulp.task('concatcss', function() {
         './css/jqcloud.min.css',
         //'./css/slick.css',
         //'./css/slick-theme.css',
+        './js/vendor/leaflet/leaflet.css',
         './css/style.css',
         './css/animate.css'
     ])

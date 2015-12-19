@@ -78,6 +78,8 @@ $(function (){
             num_countries = countries.length;
             //console.log(num_countries);
 
+            init_map();
+
             //tag cloud
             $('#tagcloud').jQCloud(words, {
                 removeOverflowing:false,
@@ -355,6 +357,41 @@ function initialize() {
 
 
 
+function init_map() {
+    //map
+    L.Icon.Default.imagePath = './js/vendor/leaflet/images';
+    var grayIcon = L.icon({
+        iconUrl: './js/vendor/leaflet/images/marker-icon-gray.png',
+        shadowUrl: './js/vendor/leaflet/images/marker-shadow.png',
+        iconSize:     [18, 30], // size of the icon
+        shadowSize:   [30, 30], // size of the shadow
+        iconAnchor:   [9, 30], // point of the icon which will correspond to marker's location
+        shadowAnchor: [9, 30],  // the same for the shadow
+        popupAnchor:  [9, -3] // point from which the popup should open relative to the iconAnchor
+    });
+    var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }),
+        latlng = L.latLng(51,4),
+        i = 0,
+        first = true,
+        map = L.map('location-map', {
+            center: latlng,
+            zoom: 4,
+            layers: [tiles]
+        });
+    //add markers
+    for (i=0; i < num_places; i++) {
+        //add popup to current location
+        if (first) {
+            first = false;
+            L.marker([places[i]['lat'], places[i]['lng']]).addTo(map).bindPopup('<b>'+places[i]['city']+'</b><br />'+places[i]['country']).openPopup();
+        } else {
+            L.marker([places[i]['lat'], places[i]['lng']], {icon: grayIcon}).addTo(map);
+        }
+    }
+}
+
 
 $(function() { //$(document).ready(function () {
 
@@ -434,6 +471,9 @@ $(function() { //$(document).ready(function () {
         return false;
 
     });//$('#simple_form-field-submit').click
+
+
+
 
 
 /*
