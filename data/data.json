@@ -68,6 +68,8 @@
         {"text": "SAP", "weight": 3},
         {"text": "Scrum", "weight": 2},
         {"text": "ServiceNow", "weight": 2},
+        {"text": "Silex", "weight": 4},
+        {"text": "Slim", "weight": 4},
         {"text": "SPARQL", "weight": 4},
         {"text": "Sphinx", "weight": 5},
         {"text": "SPSS", "weight": 3},
