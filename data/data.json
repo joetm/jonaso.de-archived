@@ -39,6 +39,7 @@
         {"text": "ITSM", "weight": 6},
         {"text": "Jasmine", "weight": 1},
         {"text": "JavaScript", "weight": 9},
+        {"text": "Jinja2", "weight": 4},
         {"text": "Jira", "weight": 3},
         {"text": "jQuery", "weight": 8},
         {"text": "JSON", "weight": 6},
