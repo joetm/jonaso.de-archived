@@ -62,6 +62,7 @@
         {"text": "Quality Mgt.", "weight": 5},
         {"text": "R", "weight": 1},
         {"text": "RDF(S)", "weight": 4},
+        {"text": "RDF Data Cube", "weight": 2},
         {"text": "RequireJS", "weight": 5},
         {"text": "Requirements Engineering", "weight": 7},
         {"text": "REST", "weight": 6},
