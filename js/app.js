@@ -7,15 +7,26 @@ var app = {},
     i = 0,
     num_places = 0,
     num_countries = 0,
+    years_abroad = 0,
     map = {};
 
 
 app.finished = false;
 $(app).on('ajax:done', function () {
-    console.log('custom ajax:done event');
+    // console.log('custom ajax:done event');
     app.finished = true;
     //only set up animations after app is fully loaded
     new WOW().init();
+    // console flair
+    console.log("
+         ________________________________
+        |                                |
+________|                                |_______
+\\       |           jonaso.de            |      /
+ \\      |                                |     /
+ /      |________________________________|     \\
+/__________)                          (_________\\
+");
 });//$(app).on('ajax:done'
 
 
@@ -66,17 +77,38 @@ $(function (){
         .done(function(data) {
 
             places = data.places;
-            words = data.words;
             num_places = places.length;
+            words = data.words;
+
+            var start, end, diff;
 
             for (i = 0; i < num_places; i = i + 1) {
                 if (!contains(countries, places[i].country)) {
                     countries.push(places[i].country);
                 }//if
+                // calculate the time abroad (extra-Germany)
+                if (places[i].start && places[i].end) {
+                    start = new Date(places[i].start).getTime();
+                    if (places[i].end !== 'today') {
+                        end = new Date(places[i].end).getTime();
+                    } else {
+                        end = new Date().getTime();
+                    }
+                    diff = (end - start) / 1000
+                    // console.log('diff', diff);
+                    years_abroad += diff;
+                }
             }//for
-            //console.log(countries);
+            // console.log(countries);
             num_countries = countries.length;
-            //console.log(num_countries);
+
+            if (!years_abroad) {
+                $('#map span#years_abroad').parent().hide();
+            } else {
+                years_abroad = +((years_abroad / 31536000).toFixed(2)); // in years
+                // console.log('years_abroad', years_abroad);
+                $('#map span#years_abroad').text(years_abroad);
+            }
 
             init_map();
 

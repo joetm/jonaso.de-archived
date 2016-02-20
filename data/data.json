@@ -1,12 +1,13 @@
 {
 
     "places": [
-        {"city": "Southampton", "country": "United Kingdom", "lat": 50.897728, "lng": -1.408561},
-        {"city": "Paris", "country": "France", "lat": 48.8638149, "lng": 2.3565062},
-        {"city": "Baden", "country": "Switzerland", "lat": 47.4823927, "lng": 8.3139572},
+        {"city": "Eastleigh", "country": "United Kingdom", "lat": 50.9760772, "lng": -1.3817407, "start": "2014-10-05", "end": "today"},
+        {"city": "Southampton", "country": "United Kingdom", "lat": 50.897728, "lng": -1.408561, "start": "2014-09-25", "end": "2015-09-12"},
+        {"city": "Paris", "country": "France", "lat": 48.8638149, "lng": 2.3565062, "start": "2013-08-01", "end": "2014-07-31"},
+        {"city": "Baden", "country": "Switzerland", "lat": 47.4823927, "lng": 8.3139572, "start": "2011-06-15", "end": "2012-03-31"},
         {"city": "Hanau", "country": "Germany", "lat": 50.0972016, "lng": 8.9288971},
-        {"city": "Radovis", "country": "Macedonia", "lat": 41.6356149, "lng": 22.4661076},
-        {"city": "Linkoping", "country": "Sweden", "lat": 58.4120412, "lng": 15.6026428},
+        {"city": "Radovis", "country": "Macedonia", "lat": 41.6356149, "lng": 22.4661076, "start": "2010-07-05", "end": "2010-08-27"},
+        {"city": "Linkoping", "country": "Sweden", "lat": 58.4120412, "lng": 15.6026428, "start": "2005-08-01", "end": "2006-07-31"},
         {"city": "Darmstadt", "country": "Germany", "lat": 49.8602936, "lng": 8.666361},
         {"city": "Donaueschingen", "country": "Germany", "lat": 47.961097, "lng": 8.4962262},
         {"city": "Villingen-Schwenningen", "country": "Germany", "lat": 48.0741083, "lng": 8.5424815},
@@ -43,6 +44,7 @@
         {"text": "Jira", "weight": 3},
         {"text": "jQuery", "weight": 8},
         {"text": "JSON", "weight": 6},
+        {"text": "JSLint", "weight": 6},
         {"text": "Linux", "weight": 2},
         {"text": "Matlab", "weight": 2},
         {"text": "Meteor", "weight": 2},
