@@ -30,6 +30,7 @@
         {"text": "CAPM", "weight": 4},
         {"text": "CoffeeScript", "weight": 4},
         {"text": "CSS3", "weight": 7},
+        {"text": "EasyRDF", "weight": 3},
         {"text": "Excel", "weight": 6},
         {"text": "Fabric", "weight": 3},
         {"text": "Git", "weight": 3},
