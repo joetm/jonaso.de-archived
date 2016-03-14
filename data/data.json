@@ -42,7 +42,7 @@
         {"text": "ITSM", "weight": 6},
         {"text": "Jasmine", "weight": 2},
         {"text": "JavaScript", "weight": 9},
-        {"text": "Jinja2", "weight": 4},
+        {"text": "Jinja2", "weight": 2},
         {"text": "Jira", "weight": 3},
         {"text": "jQuery", "weight": 8},
         {"text": "JSON", "weight": 6},
@@ -56,6 +56,7 @@
         {"text": "Mongoose", "weight": 3},
         {"text": "MS Excel", "weight": 6},
         {"text": "MySQL", "weight": 8},
+        {"text": "MySQL Workbench", "weight": 5},
         {"text": "NodeJS", "weight": 6},
         {"text": "OWL", "weight": 4},
         {"text": "Pandas", "weight": 1},
@@ -83,10 +84,12 @@
         {"text": "SSH", "weight": 4},
         {"text": "Tableau", "weight": 2},
         {"text": "Tabula", "weight": 2},
+        {"text": "Twig", "weight": 2},
         {"text": "UAT", "weight": 7},
         {"text": "VBA", "weight": 5},
         {"text": "VMWare", "weight": 4},
-        {"text": "XML", "weight": 1}
+        {"text": "XML", "weight": 1},
+        {"text": "YUI2", "weight": 3}
     ]
 
 }
