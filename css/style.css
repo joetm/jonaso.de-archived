@@ -105,3 +105,10 @@ section#disclaimer{
 	height:450px;
 	pointer-events:none
 }
+
+.clients img{
+	opacity:0.4;
+}
+.clients img:hover{
+	opacity:1;
+}
