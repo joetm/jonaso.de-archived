@@ -1,7 +1,8 @@
 {
 
     "places": [
-        {"city": "Eastleigh", "country": "United Kingdom", "lat": 50.9760772, "lng": -1.3817407, "start": "2014-10-05", "end": "today"},
+        {"city": "Bern", "country": "Switzerland", "lat": 46.9478958, "lng": 7.4476222, "start": "2016-05-01", "end": "today"},
+        {"city": "Eastleigh", "country": "United Kingdom", "lat": 50.9760772, "lng": -1.3817407, "start": "2015-10-05", "end": "2016-04-30"},
         {"city": "Southampton", "country": "United Kingdom", "lat": 50.897728, "lng": -1.408561, "start": "2014-09-25", "end": "2015-09-12"},
         {"city": "Paris", "country": "France", "lat": 48.8638149, "lng": 2.3565062, "start": "2013-08-01", "end": "2014-07-31"},
         {"city": "Baden", "country": "Switzerland", "lat": 47.4823927, "lng": 8.3139572, "start": "2011-06-15", "end": "2012-03-31"},
@@ -12,10 +13,10 @@
         {"city": "Donaueschingen", "country": "Germany", "lat": 47.961097, "lng": 8.4962262},
         {"city": "Villingen-Schwenningen", "country": "Germany", "lat": 48.0741083, "lng": 8.5424815},
         {"city": "Karsau", "country": "Germany", "lat": 47.5849489, "lng": 7.8094463},
-        {"city": "Fort Collins", "country": "United States", "lat": 40.5813689, "lng": -105.095032}
+        {"city": "Fort Collins", "country": "United States", "lat": 40.5813689, "lng": -105.095032, "start": "1984", "end": "1985"}
     ],
     "BAK": [
-        {"city": "Toronto", "country": "Canada", "lat": 43.7118194, "lng": -79.4024253}
+        {"city": "Toronto", "country": "Canada", "lat": 43.7118194, "lng": -79.4024253, "start": "2013-01-01", "end": "2013-06-31"}
     ],
 
     "words": [
@@ -38,7 +39,6 @@
         {"text": "HTML", "weight": 10},
         {"text": "ITIL", "weight": 4},
         {"text": "ITSM", "weight": 4},
-        {"text": "ITSM", "weight": 6},
         {"text": "Jasmine", "weight": 2},
         {"text": "JavaScript", "weight": 9},
         {"text": "Jinja2", "weight": 2},
@@ -67,7 +67,7 @@
         {"text": "Quality Mgt.", "weight": 5},
         {"text": "R", "weight": 1},
         {"text": "RDF(S)", "weight": 4},
-        {"text": "RDF Data Cube", "weight": 2},
+        {"text": "RDF Data Cube Vocabulary", "weight": 3},
         {"text": "RequireJS", "weight": 5},
         {"text": "Requirements Engineering", "weight": 7},
         {"text": "REST", "weight": 6},

@@ -64,10 +64,19 @@
     },
     {
         "_id": "10",
-        "dates": "2015 - today",
+        "dates": "2015 - 2016",
         "title": "Developer / Data Scientist",
-        "description": "Seme4 Ltd.",
-        "description": "Responsible for the development of the backend infrastructure for the Linked Data SkillsPlanner project. <a href='http://www.skillsplanner.net/' target='blank'>SkillsPlanner</a> is a complex and ambitious project with the aim of alleviating the skills shortage in London's construction industry.",
+        "organisation": "Seme4 Ltd.",
+        "description_BAK": "Responsible for the development of the backend infrastructure for the Linked Data SkillsPlanner project. <a href='http://www.skillsplanner.net/' target='blank'>SkillsPlanner</a> is a complex and ambitious project with the aim of alleviating the skills shortage in London's construction industry.",
+        "description": "Responsible for the development of the backend infrastructure for the <a href='http://www.skillsplanner.net/' target='blank'>SkillsPlanner</a> project. Created a well-documented suite of data management and conversion tools that interact with CKAN.",
         "img": "./img/laptop.jpg"
+    },
+    {
+        "_id": "11",
+        "dates": "2016 - today",
+        "title": "Full-Stack Developer",
+        "organisation": "Liip AG",
+        "description": "",
+        "img": "./img/ch-bern.jpg"
     }
 ]

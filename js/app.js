@@ -1,4 +1,4 @@
-/*global $, console, document, Backbone, _*/
+/*global $, console, document, window, alert */
 
 var app = {},
     places,
@@ -18,15 +18,17 @@ $(app).on('ajax:done', function () {
     //only set up animations after app is fully loaded
     new WOW().init();
     // console flair
-    console.log("
-         ________________________________
-        |                                |
-________|                                |_______
-\\       |           jonaso.de            |      /
- \\      |                                |     /
- /      |________________________________|     \\
-/__________)                          (_________\\
+    /*
+    console.log("\
+         ________________________________\
+        |                                |\
+________|                                |_______\
+\\       |           jonaso.de            |      /\
+ \\      |                                |     /\
+ /      |________________________________|     \\\
+/__________)                          (_________\\\
 ");
+    */
 });//$(app).on('ajax:done'
 
 
@@ -100,7 +102,9 @@ $(function (){
                 }
             }//for
             // console.log(countries);
+            //number of countries visited
             num_countries = countries.length;
+            $('#map .num_countries').text(num_countries);
 
             if (!years_abroad) {
                 $('#map span#years_abroad').parent().hide();
@@ -130,263 +134,66 @@ $(function (){
 });
 
 
-var MiniCVModel = Backbone.Model.extend({
-    urlRoot: './data/mini-cv.json'
-});
-var MiniCVCollection = Backbone.Collection.extend({
-    idAttribute: '_id',
+// get the CV template
+var minicv_tpl_request = $.get('./views/minicv.htm');
+// get the CV data
+var minicv_request = $.ajax({
+    method: "GET",
     url: './data/mini-cv.json',
-    model: MiniCVModel
-});
-var miniCVstations = new MiniCVCollection();
-//mini cv views
-var MiniCVView = Backbone.View.extend({
-    collection: miniCVstations,
-    el: $('#cv .timeline'),
-    tagName: "li",
-    //className: "document-row",
-    initialize: function () {
-        //console.log('initializing view');
-        this.loadTemplate();
-        //console.log('collection', this.collection);
-        //this.listenTo(this.collection, "change", this.render);
+    dataType: "json",
+    headers: {
+        'Accept': 'application/json'
     },
-    template: false,
-    loadTemplate: function () {
-        var self = this;
-        $.get('./views/minicv.htm', function(template) {
-            Mustache.parse(template); // supposed to speed up future uses
-            self.template = template;
-            self.render();
-        });
-    },
-    itemNo: 0,
-    renderTemplate: function (item) {
-        this.itemNo++;
-        item = item.toJSON();
-        if (this.itemNo % 2 !== 0) {
-            item.li_class = ' timeline-inverted';
-            item.timeline_body_alternation = 'slideInRight';
-        } else {
-            item.li_class = '';
-            item.timeline_body_alternation = 'slideInLeft';
+    beforeSend: function(xhr) {
+        xhr.overrideMimeType('application/json');
+    }
+})
+// when minicv data and template are ready
+$.when(minicv_request, minicv_tpl_request).done(function (data, template) {
+        if (!data || data[0] === undefined) {
+            // TODO: error handling
+            return;
         }
-        return Mustache.render(this.template, item);
-    },
-    htmlContent: '',
-    render: function () {
-        var self = this;
-        //see http://stackoverflow.com/a/15576804/426266
-        this.collection.fetch().done(function () {
-            self.collection.each(function(item){
-                self.htmlContent += self.renderTemplate(item);
-            });
-            self.$el.prepend(self.htmlContent);
-            //var renderedContent = self.template(self.collection.toJSON());
-            //self.$el.html(renderedContent);
-        });//this.collection.fetch
 
-        //set up the animations
-        //alternate the mini-cv timeline so that I do not have to worry about it
-        //and add animation
-        /*
-        $('ul.timeline li').each(function (index, el) {
-            if (index % 2 !== 0) {
-                $(el).addClass('timeline-inverted');
-                $(el).find('.timeline-body').addClass('slideInRight');
+        data = data[0]
+        // console.log('minicvdata', data);
+
+        template = template[0];
+        // console.log('template', template);
+
+        var $el = $('#cv .timeline'),
+            itemNo = 0,
+            htmlContent = '';
+
+        // Mustache.parse(template);
+        var tplWiz = {
+            parsedTpl: doT.template(template),
+            renderTemplate: function (item) {
+                itemNo++;
+                // item = item.toJSON();
+                if (itemNo % 2 !== 0) {
+                    item.li_class = ' timeline-inverted';
+                    item.timeline_body_alternation = 'slideInRight';
+                } else {
+                    item.li_class = '';
+                    item.timeline_body_alternation = 'slideInLeft';
+                }
+                // return Mustache.render(template, item);
+                // console.log('item', item);
+                return this.parsedTpl(item);
             }
-            else
-            {
-                $(el).find('.timeline-body').addClass('slideInLeft');
-            }
+        };
+
+        $.each(data, function (index, item) {
+            htmlContent += tplWiz.renderTemplate(item);
         });
-        */
+        // console.log('htmlContent', htmlContent);
+
+        $el.prepend(htmlContent);
 
         $(app).trigger('ajax:done');
-    }
-});//MiniCVView
-var miniCVview = new MiniCVView();
-//miniCVstations.fetch();
-//console.log('miniCVstations', miniCVstations);
 
-/*
-var TILE_SIZE = 256;
-//var loc = new google.maps.LatLng(50.897728,-1.408561);
-
-function bound(value, opt_min, opt_max) {
-    'use strict';
-    if (opt_min != null) value = Math.max(value, opt_min);
-    if (opt_max != null) value = Math.min(value, opt_max);
-    return value;
-}
-
-function degreesToRadians(deg) {
-    'use strict';
-    return deg * (Math.PI / 180);
-}
-
-function radiansToDegrees(rad) {
-    'use strict';
-    return rad / (Math.PI / 180);
-}
-
-function MercatorProjection() {
-    'use strict';
-    this.pixelOrigin_ = new google.maps.Point(TILE_SIZE / 2, TILE_SIZE / 2);
-    this.pixelsPerLonDegree_ = TILE_SIZE / 360;
-    this.pixelsPerLonRadian_ = TILE_SIZE / (2 * Math.PI);
-}
-
-MercatorProjection.prototype.fromLatLngToPoint = function(latLng, opt_point) {
-    var me = this;
-    var point = opt_point || new google.maps.Point(0, 0);
-    var origin = me.pixelOrigin_;
-
-    point.x = origin.x + latLng.lng() * me.pixelsPerLonDegree_;
-
-    // Truncating to 0.9999 effectively limits latitude to 89.189. This is
-    // about a third of a tile past the edge of the world tile.
-    var siny = bound(Math.sin(degreesToRadians(latLng.lat())), -0.9999, 0.9999);
-    point.y = origin.y + 0.5 * Math.log((1 + siny) / (1 - siny)) * -me.pixelsPerLonRadian_;
-    return point;
-};
-
-MercatorProjection.prototype.fromPointToLatLng = function(point) {
-    var me = this;
-    var origin = me.pixelOrigin_;
-    var lng = (point.x - origin.x) / me.pixelsPerLonDegree_;
-    var latRadians = (point.y - origin.y) / -me.pixelsPerLonRadian_;
-    var lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.PI / 2);
-    return new google.maps.LatLng(lat, lng);
-};
-
-function createInfoWindowContent() {
-    'use strict';
-    return places[0].city; //'Jon'+'as Op'+'penla'+'ender<br>' + 'Dipl.-Wirtsch.-Ing.';
-}
-
-
-var MY_MAPTYPE_ID = 'custom_style';
-
-function initialize() {
-    'use strict';
-    var mapOptions = {
-        zoom: 3,
-        center: loc,
-        mapTypeId: MY_MAPTYPE_ID,
-        disableDefaultUI: true,
-        scrollwheel: false,
-        panControl: false,
-        zoomControl: true,
-        zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.SMALL
-        },
-        scaleControl: true
-    };
-
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-    var featureOpts = [
-        {
-            stylers: [
-                { hue: '#0020AA' },
-                { visibility: 'simplified' },
-                { gamma: 0.8 }
-        ]
-    },
-    {
-        elementType: 'labels',
-        stylers: [
-            { visibility: 'off' }
-        ]
-    },
-    {
-        featureType: 'poi.park',
-        stylers: [
-            { color: '#DDDDDD' }
-        ]
-    },
-    {
-        featureType: 'water',
-        stylers: [
-            { color: '#EFEFEF' }
-        ]
-    },
-    {
-        featureType: 'road',
-        stylers: [
-            { visibility: 'off' }
-        ]
-    },
-  {
-    featureType: 'landscape',
-    elementType: 'geometry',
-    stylers: [
-      { hue: '#ffff00' },
-      { gamma: 1.4 },
-      { saturation: 82 },
-      { lightness: 96 }
-    ]
-  }
-    ];
-    var customMapType = new google.maps.StyledMapType(featureOpts, {name: 'Custom Style'});
-    map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-
-
-
-
-
-    var markers = [];
-    var i = 0, s = places.length;
-
-    for (i = 0; i < s; i = i + 1) {
-        markers.push(new google.maps.LatLng(places[i].lat,places[i].lng));
-    }//for
-
-
-    for (i = 0, s = markers.length; i < s; i++) {
-        markers[i] = new google.maps.Marker({
-            position: markers[i],
-            clickable: false,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 3,
-                strokeColor: '#FFC040'
-            },
-            draggable: false,
-            map: map
-        });
-    }//for
-
-     markers.push(new google.maps.Marker({
-        position: loc,
-        icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 3,
-            strokeColor: '#FF0000'
-        },
-        draggable: false,
-        'map': map
-    }));
-
-
-//    var marker = new google.maps.Marker({
-//        position: loc,
-//        map: map
-//    });
-
-//    var coordInfoWindow = new google.maps.InfoWindow();
-//    coordInfoWindow.setContent(createInfoWindowContent());
-//    coordInfoWindow.setPosition(loc);
-//    coordInfoWindow.open(map);
-//    google.maps.event.addListener(map, 'zoom_changed', function() {
-//        coordInfoWindow.setContent(createInfoWindowContent());
-//        coordInfoWindow.open(map);
-//    });
-
-}
-*/
-
+    });
 
 
 function init_map() {
@@ -412,16 +219,40 @@ function init_map() {
             zoom: 4,
             layers: [tiles]
         });
+    var popup,
+        marker,
+        markers = [];
     //add markers
     for (i=0; i < num_places; i++) {
-        //add popup to current location
+        popup = L.popup({closeButton: false}).setContent('<b>'+places[i]['city']+'</b><br />'+places[i]['country']);
         if (first) {
             first = false;
-            L.marker([places[i]['lat'], places[i]['lng']]).addTo(map).bindPopup('<b>'+places[i]['city']+'</b><br />'+places[i]['country']).openPopup();
+            marker = L.marker([places[i]['lat'], places[i]['lng']], {riseOnHover:true})
+                .addTo(map)
+                .bindPopup(popup)
+                .openPopup();
         } else {
-            L.marker([places[i]['lat'], places[i]['lng']], {icon: grayIcon}).addTo(map);
+            marker = L.marker([places[i]['lat'], places[i]['lng']], {icon: grayIcon, riseOnHover:true})
+                .addTo(map)
+                .bindPopup(popup);
         }
+        marker.on('mouseover', function (e) {
+            alert('mouseover marker');
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            alert('mouseout marker');
+            this.closePopup();
+        });
+        markers.push(marker);
     }
+    // map hover
+    $('#location-map').on('mouseover', function(e) {
+        // close all popups
+        $.each(markers, function (index, marker) {
+            marker.closePopup();
+        });
+    });
 }
 
 
@@ -438,10 +269,6 @@ $(function() { //$(document).ready(function () {
 
     //copyright date
     $('footer .copyright').append(' ' + new Date().getFullYear());
-
-
-    //number of countries visited
-    $('#map .num_countries').text(num_countries);
 
     /*
     //resize the containers on the main to window size
@@ -499,59 +326,8 @@ $(function() { //$(document).ready(function () {
                 $('.form-group').remove();
             });
         }
-
         return false;
-
     });//$('#simple_form-field-submit').click
 
 
-
-
-
-/*
-    //animations
-    // Only animate in elements if the browser supports animations
-    if (browserSupportsCSSProperty('animation') && browserSupportsCSSProperty('transition')) {
-        var $animatedEls = $(".animated"),
-            animateOffset = 50,
-            windowHeight = 0,
-            currScrollPosition = 0;
-        windowScrollPosition = 0,
-
-        //$animatedEls.addClass('pre-anim');
-
-        windowHeight = $(window).height();
-
-        $(window).scroll(function(e) {
-
-            var currScrollPosition = $(window).scrollTop(),
-                offset = 0;
-
-            $.each($(".animated"), function(i, el){
-
-                offset = $(el).offset().top;
-
-                //console.log('offset: ' + i + " - " + offset);
-
-                if (currScrollPosition > offset + animateOffset) {
-                    $(el).removeClass('pre-anim');
-                    $(el).addClass( $(el).data('anim') );
-                    console.log('animated el: ' + i);
-                }
-                else
-                {
-                    $(el).addClass('pre-anim');
-                }
-            });
-
-        });
-    }
-*/
-
 });//$(function(){
-
-
-
-/*
-google.maps.event.addDomListener(window, 'load', initialize);
-*/

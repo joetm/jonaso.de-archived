@@ -62,17 +62,20 @@ gulp.task('compressjs', function() {
 //concatjs
 gulp.task('concatjs', function() {
     return gulp.src([
-        'js/vendor/jquery-2.1.3.min.js', //requireJS requires this to be separate
-        'js/vendor/underscore-min.js',
-        'js/vendor/backbone-min.js',
+        'js/vendor/jquery-2.1.3.min.js',
+        //'js/vendor/bootstrap.min.js',
+        // 'js/vendor/underscore-min.js',
+        // 'js/vendor/backbone-min.js',
+        // 'node_modules/react/dist/react.min.js',
+        // 'node_modules/react-dom/dist/react-dom.min.js',
         'js/vendor/jquery.lazyload.min.js',
-        //'js/vendor/d3/d3.min.js',
-        //'js/vendor/d3-cloud/build/d3.layout.cloud.js',
+        // 'js/vendor/d3/d3.min.js',
+        // 'js/vendor/d3-cloud/build/d3.layout.cloud.js',
         'js/vendor/jqcloud.min.js',
-        'js/vendor/bootstrap.min.js',
         'js/vendor/cbpAnimatedHeader.min.js',
         'js/agency.min.js',
-        'js/vendor/mustache/mustache.min.js',
+        // 'js/vendor/mustache/mustache.min.js',
+        'js/vendor/doT/doT.min.js',
         'js/vendor/jquery.easing.min.js',
         'js/vendor/wow.min.js',
         'js/vendor/leaflet/leaflet.js',
